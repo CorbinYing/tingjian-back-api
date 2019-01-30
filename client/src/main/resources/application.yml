@@ -2,3 +2,10 @@ spring:
   profiles:
 #    active: @activatedProperties@
     active: dev
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  message:
+    encoding: UTF-8
