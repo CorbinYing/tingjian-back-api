@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.corbin</groupId>
-        <artifactId>tingjian</artifactId>
+        <artifactId>tingjian-back-api</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 

@@ -3,12 +3,13 @@ server:
 
 spring:
   datasource:
-    name: ewifiV2
-    url: jdbc:mysql://192.168.1.32:3306/ewifiV2?useUnicode=true&characterEncoding=utf-8
-    username: root
+    name: tingjian
+    url: jdbc:mysql://127.0.0.1:3306/tingjian?useUnicode=true&characterEncoding=utf-8&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
+    username: yin
     password: 123456
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
+#    driver-class-name: com.mysql.jdbc.Driver
     driver-class-name: com.mysql.cj.jdbc.Driver
     maxActive: 20
     initialSize: 5

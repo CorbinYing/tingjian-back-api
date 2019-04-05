@@ -6,9 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="client" />
         <module name="common" />
         <module name="server" />
+        <module name="client" />
       </profile>
     </annotationProcessing>
   </component>
@@ -17,7 +17,7 @@
       <module name="client" options="-parameters" />
       <module name="common" options="-parameters" />
       <module name="server" options="-parameters" />
-      <module name="tingjian" options="-parameters" />
+      <module name="tingjian-back-api" options="-parameters" />
     </option>
   </component>
 </project>

@@ -1,4 +1,4 @@
-package org.corbin.common.base;
+package org.corbin.common.base.Response;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
@@ -38,7 +38,7 @@ public class ResponseDefaultMsg {
              */
             properties.load(new InputStreamReader(resource.getInputStream()));
             //properties.load(inputStream);
-            System.out.println(properties);
+          //  System.out.println(properties);
         } catch (IOException io) {
             log.error("Could not load properties from path:" + location + io.getMessage());
         }
@@ -55,9 +55,9 @@ public class ResponseDefaultMsg {
             loadProperties(msgCodeFileName);
         }
         if (properties != null) {
-            return properties.getProperty(code.toString(), "");
+            return properties.getProperty(code.toString());
         } else {
-            return "";
+            return null;
         }
     }
 

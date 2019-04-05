@@ -1,17 +1,17 @@
-package org.corbin.common.base;
+package org.corbin.common.base.Response;
 
 import com.google.common.collect.Maps;
 import lombok.Data;
 
 import java.io.Serializable;
 @Data
-public class ResponseResult  implements Serializable {
+public class ResponseResult<T>  implements Serializable {
 
     private Integer code;
     private String  msg;
-    private Object result;
+    private T result;
 
-    public ResponseResult(Integer code, String msg, Object result) {
+    public ResponseResult(Integer code, String msg, T result) {
         this.code = code;
         this.msg = msg;
         this.result = result;
@@ -45,21 +45,19 @@ public class ResponseResult  implements Serializable {
         }
         return false;
     }
+    /**
+     * 判断ResponseResult属性值result是否为空
+     */
     public static boolean isResponseResultNotNull(ResponseResult responseResult){
         return isResponseResultNull(responseResult);
     }
 
-    /**
-     * 判断ResponseResult属性值result是否为空
-     */
-    public static boolean isResponseResultProNotNull(ResponseResult responseResult){
-        return isResponseResultNull(responseResult);
-    }
+
 
     public static void main(String []args){
         ResponseResult r= ResponseResult.newInstance(ResponseCode.ERR_11002);
-        System.out.println(r);;
-        System.out.println();;
+        System.out.println(r);
+        System.out.println();
     }
 
 }

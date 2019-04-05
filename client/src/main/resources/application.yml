@@ -9,3 +9,4 @@ spring:
       force: true
   message:
     encoding: UTF-8
+
