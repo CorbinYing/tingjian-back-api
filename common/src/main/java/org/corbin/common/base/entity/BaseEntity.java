@@ -2,6 +2,7 @@ package org.corbin.common.base.entity;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,9 +12,9 @@ import java.util.Date;
  * @Descripton:
  */
 @MappedSuperclass
-public abstract class BaseEntity extends AbstractBaseEntity{
+public abstract class BaseEntity extends AbstractBaseEntity implements Serializable {
 
-    @Column(name = "UPDATE_TIME")
+    @Column(name = "update_time")
     private Date updateTime;
 
 }

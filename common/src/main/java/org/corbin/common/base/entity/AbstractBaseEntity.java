@@ -12,11 +12,11 @@ import java.util.Date;
 @MappedSuperclass
 public abstract class AbstractBaseEntity {
     @Id
-    @Column(name = "ID")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
-    @Column(name = "CREATE_TIME")
+    @Column(name = "create_time")
     private Date createTime;
 
 }
