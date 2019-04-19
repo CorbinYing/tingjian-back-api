@@ -10,27 +10,25 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.Table;
-import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Data
 @DynamicInsert
 @DynamicUpdate
+@Table(name = "verification_log")
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "comment_info")
-public class CommentInfo extends AbstractBaseEntity  implements Serializable {
+public class VerificationLog extends AbstractBaseEntity {
 
-    @Column(name = "comment_id")
-    private Long commentId;
+    @Column(name = "mail")
+    private String mail;
 
-    @Column(name = "comment_content")
-    private String commentContent;
+    @Column(name = "tel")
+    private String tel;
 
-    @Column(name = "comment_star")
-    private Integer commentStar;
+    @Column(name = "verification_code")
+    private String verificationCode;
 
-    @Column(name = "user_id")
-    private Long userId;
-
-
+    @Column(name = "failure_time")
+    private Date failureTime;
 }

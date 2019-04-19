@@ -2,14 +2,21 @@ package org.corbin.common.entity;
 
 import lombok.Data;
 import org.corbin.common.base.entity.BaseEntity;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
 @Data
+@DynamicInsert
+@DynamicUpdate
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "singer_info")
 public class SingerInfo extends BaseEntity implements Serializable {
 

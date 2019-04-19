@@ -1,5 +1,6 @@
 package org.corbin.common.util;
 
+
 /**
  * Twitter_Snowflake<br>
  * SnowFlake的结构如下(每部分用-分开):<br>
@@ -149,7 +150,7 @@ public class SnowFlake {
      * @param lastTimestamp 上次生成ID的时间截
      * @return 当前时间戳
      */
-    protected long tilNextMillis(long lastTimestamp) {
+    protected long tilNextMillis( long lastTimestamp) {
         long timestamp = timeGen();
         while (timestamp <= lastTimestamp) {
             timestamp = timeGen();
@@ -169,7 +170,7 @@ public class SnowFlake {
    //==============================Test=============================================
 
 
-    public static void main(String[] args) {
+ /*   public static void main(String[] args) {
         SnowFlake idWorker = new SnowFlake(1, 1);
         for (int i = 0; i < 1000; i++) {
             long id = idWorker.nextId();
@@ -177,5 +178,5 @@ public class SnowFlake {
             System.out.println(id);
           //  System.out.println(System.currentTimeMillis());
         }
-    }
+    }*/
 }

@@ -1,17 +1,16 @@
 package org.corbin.client;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.jetbrains.annotations.NotNull;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
 public class ClientApplicationTests {
 
-    @Test
-    public void contextLoads() {
-    }
+
+public void t2est(@NotNull Integer i){}
+
+//    @Test
+//    public void contextLoads() {
+//        t2est(null);
+//    }
 
 }
 

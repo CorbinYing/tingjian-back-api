@@ -4,6 +4,8 @@ import com.google.common.collect.Maps;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Random;
+
 @Data
 public class ResponseResult<T>  implements Serializable {
 
@@ -55,9 +57,21 @@ public class ResponseResult<T>  implements Serializable {
 
 
     public static void main(String []args){
-        ResponseResult r= ResponseResult.newInstance(ResponseCode.ERR_11002);
-        System.out.println(r);
-        System.out.println();
+//        ResponseResult r= ResponseResult.newInstance(ResponseCode.ERR_11002);
+//        System.out.println(r);
+//        System.out.println();
+
+
+
+
+        Random ra =new Random();
+        //0 -9
+        int num=ra.nextInt(10);
+        char low=(char)(ra.nextInt(26)+65);
+        char up=(char)(ra.nextInt(26)+97);
+        System.out.println(num);
+        System.out.println(low);
+        System.out.println(up);
     }
 
 }

@@ -2,7 +2,7 @@
 <configuration>
 
     <!-- 日志根目录-->
-    <springProperty scope="context" name="LOG_HOME" source="logging.path" defaultValue="/data/logs/spring-boot-logback/client"/>
+    <springProperty scope="context" name="LOG_HOME" source="logging.path" defaultValue="./logs/spring-boot-logback/client"/>
 
     <!-- 日志级别 -->
     <springProperty scope="context" name="LOG_ROOT_LEVEL" source="logging.level.root" defaultValue="DEBUG"/>

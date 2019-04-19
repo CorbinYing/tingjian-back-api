@@ -1,4 +1,4 @@
-package org.corbin.common.base.config;
+package org.corbin.common.base.constant;
 
 
 /**
