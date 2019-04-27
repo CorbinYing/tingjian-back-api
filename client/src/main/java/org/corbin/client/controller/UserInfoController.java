@@ -66,4 +66,9 @@ public class UserInfoController extends BaseController {
 
     }
 
+@GetMapping("/test/vue")
+    public String test(){
+        return "123";
+    }
+
 }

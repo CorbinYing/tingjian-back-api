@@ -3,13 +3,14 @@ server:
 
 spring:
   datasource:
-    name:
-    url:
-    username:
-    password:
+    name: tingjian
+    url: jdbc:mysql://127.0.0.1:3306/tingjian?useUnicode=true&characterEncoding=utf-8&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
+    username: yin
+    password: yin123456
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.jdbc.Driver
+    #    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     maxActive: 20
     initialSize: 5
     maxWait: 60000
@@ -25,3 +26,12 @@ spring:
     removeAbandoned: true
     remove-abandoned-timeout: 1800
     log-abandoned: true
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+

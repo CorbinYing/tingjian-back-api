@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 public class BaseController extends RunTimeExceptionHandler {
+    protected static final Integer PAGE_NO=1;
+    protected static final Integer PAGE_SIZE=10;
+
 
     public void bindingResultVarify(BindingResult bindingResult){
         if (bindingResult.hasErrors()) {

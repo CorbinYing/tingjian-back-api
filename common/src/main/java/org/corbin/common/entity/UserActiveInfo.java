@@ -10,25 +10,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.Table;
-import java.io.Serializable;
 
 @Data
 @Entity
+@Table(name = "user_active_info")
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "collect_info")
 @EntityListeners(AuditingEntityListener.class)
-public class CollectInfo extends BaseEntity implements Serializable {
-
+public class UserActiveInfo extends BaseEntity {
 
     @Column(name = "user_id")
     private Long userId;
 
-    @Column(name = "collect_id")
-    private Long collectId;
-
-
-    @Column(name = "collect_type")
-    private Integer collectType;
 
 }

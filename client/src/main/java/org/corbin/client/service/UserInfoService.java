@@ -1,10 +1,11 @@
 package org.corbin.client.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.corbin.client.repository.*;
 import org.corbin.common.base.Response.ResponseCode;
 import org.corbin.common.base.exception.ServiceException;
+import org.corbin.common.base.service.BaseService;
 import org.corbin.common.entity.UserInfo;
+import org.corbin.common.repository.*;
 import org.corbin.common.util.InitializeUtil;
 import org.corbin.common.util.PatternUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class UserInfoService {
+public class UserInfoService extends BaseService {
     @Autowired
     private CollectInfoRepository collectInfoRepository;
     @Autowired
@@ -59,6 +60,7 @@ public class UserInfoService {
         if (userInfo == null) {
             throw new ServiceException(ResponseCode.ERR_11001);
         }
+
         boolean flag = pwd.equals(userInfo.getUserPwd());
         if (!flag) {
             throw new ServiceException(ResponseCode.ERR_11002);

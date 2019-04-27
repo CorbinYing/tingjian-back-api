@@ -1,4 +1,4 @@
-package org.corbin.client.repository;
+package org.corbin.common.repository;
 
 import org.corbin.common.entity.CommentInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
