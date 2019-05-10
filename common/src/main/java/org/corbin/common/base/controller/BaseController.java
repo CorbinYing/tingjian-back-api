@@ -7,6 +7,9 @@ import org.corbin.common.base.exception.ServiceException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.File;
+import java.io.IOException;
+
 
 /**
  * @Author: Corbin
@@ -18,14 +21,25 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 public class BaseController extends RunTimeExceptionHandler {
-    protected static final Integer PAGE_NO=1;
-    protected static final Integer PAGE_SIZE=10;
 
-
-    public void bindingResultVarify(BindingResult bindingResult){
+    public void bindingResultVarify(BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new ServiceException(ResponseCode.ERR_10001, bindingResult.getFieldError().getDefaultMessage());
         }
+    }
+
+    public File createFile(String fileNameWithPath) {
+        File localFile = new File(fileNameWithPath);
+
+        if (localFile.getParentFile() != null && !localFile.getParentFile().exists()) {
+            localFile.getParentFile().mkdirs();
+        }
+        try {
+            localFile.createNewFile();
+        } catch (IOException e) {
+            log.error(null, e);
+        }
+        return localFile;
     }
 
 

@@ -31,4 +31,7 @@ public class CollectInfo extends BaseEntity implements Serializable {
     @Column(name = "collect_type")
     private Integer collectType;
 
+    @Column(name = "collect_song_type")
+    private  Integer collectSongType;
+
 }

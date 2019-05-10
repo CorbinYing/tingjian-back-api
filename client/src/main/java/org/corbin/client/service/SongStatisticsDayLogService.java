@@ -1,7 +1,7 @@
 package org.corbin.client.service;
 
+import org.corbin.client.repository.*;
 import org.corbin.common.base.service.BaseService;
-import org.corbin.common.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

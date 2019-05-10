@@ -4,7 +4,8 @@ server:
 spring:
   datasource:
     name: tingjian
-    url: jdbc:mysql://127.0.0.1:3306/tingjian?useUnicode=true&characterEncoding=utf-8&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
+    #url: jdbc:mysql://127.0.0.1:3306/tingjian?useUnicode=true&characterEncoding=utf-8&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/tingjian?useUnicode=true&characterEncoding=utf-8&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8&useSSL=false
     username: yin
     password: yin123456
     # 使用druid数据源

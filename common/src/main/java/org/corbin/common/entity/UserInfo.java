@@ -22,7 +22,6 @@ import java.io.Serializable;
 @Table(name = "user_info")
 public class UserInfo  extends BaseEntity implements Serializable {
 
-
     @Column(name = "user_id")
     private Long userId;
 
@@ -45,7 +44,7 @@ public class UserInfo  extends BaseEntity implements Serializable {
     private String userDesc;
 
     @Column(name = "user_sex")
-    private int userSex;
+    private Integer userSex;
 
     @Column(name = "user_head_portrait")
     private String userHeadPortrait;

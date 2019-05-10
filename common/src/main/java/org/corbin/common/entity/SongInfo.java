@@ -24,35 +24,47 @@ public class SongInfo extends BaseEntity implements Serializable {
     @Column(name = "song_id")
     private Long songId;
 
+    /**
+     * 参演歌手的id
+     */
+    @Column(name = "singer_id")
+    private Long singerId;
+
     @Column(name = "song_name")
     private String songName;
 
     @Column(name = "song_lyrics")
     private String songLyrics;
 
-    /**
-     * 英文，隔开
-     */
     @Column(name = "song_type")
-    private String songType;
-
-    @Column(name = "song_star")
-    private Integer songStar;
+    private Integer songType;
 
     @Column(name = "song_desc")
     private String songDesc;
 
-    @Column(name = "song_publish_time")
-    private Date songPublishTime;
-
     @Column(name = "song_shelf_time")
     private Date songShelfTime;
 
+    @Column(name = "song_publish_time")
+    private Date songPublishTime;
+
+
+    @Column(name = "song_recommend_word")
+    private String songRecommendWord;
+
+    @Column(name = "song_path")
+    private String songPath;
+
+    @Column(name = "song_img_path")
+    private String songImgPath;
+
     /**
-     * 参演歌手的id list，以英文“，”隔开
+     * 歌曲点赞数
      */
-    @Column(name = "singer_id_list")
-    private String singers;
+    @Column(name = "song_star")
+    private Long songStar;
+
+
 
 
 }

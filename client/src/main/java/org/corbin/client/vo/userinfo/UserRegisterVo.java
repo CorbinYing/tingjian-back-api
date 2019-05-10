@@ -19,4 +19,7 @@ public class UserRegisterVo extends BaseConvert<UserRegisterVo, UserInfo> {
 
     @NotBlank(message = "密码不能为空")
     private String userPwd;
+
+    @NotBlank(message = "注册验证码不能为空")
+    private String registerCode;
 }

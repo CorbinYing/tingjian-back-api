@@ -29,12 +29,12 @@ public class SingerInfo extends BaseEntity implements Serializable {
     @Column(name = "singer_sex")
     private Integer singerSex;
 
-    /**
-     * 英文，隔开
-     */
+
     @Column(name = "singer_type")
-    private String singerType;
+    private Integer singerType;
 
     @Column(name = "singer_desc")
     private String singerDesc;
+
+
 }

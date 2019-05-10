@@ -16,9 +16,10 @@ import java.util.Date;
  * @Descripton:
  */
 @MappedSuperclass
+//默认为true
 @DynamicInsert
 /**
- * @DynamicUpdate属性:设置为true,设置为true,表示update对象的时候,生成动态的update语句,如果这个字段的值是null就不会被加入到update语句中,默认false。
+ * @DynamicUpdate属性:默认设置为true,表示update对象的时候,生成动态的update语句,如果这个字段的值是null就不会被加入到update语句中,默认false。
  */
 @DynamicUpdate
 @Getter
@@ -29,7 +30,7 @@ public abstract class AbstractBaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CreatedDate
+    @CreatedDate()
     @Column(name = "create_time")
     private Date createTime;
 

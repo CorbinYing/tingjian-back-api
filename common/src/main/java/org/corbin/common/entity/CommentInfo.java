@@ -33,4 +33,8 @@ public class CommentInfo extends AbstractBaseEntity  implements Serializable {
     private Long userId;
 
 
+//    public CommentInfo(){
+//        super();
+//        this.commentId= IdHelper.snowflake.nextId2Long();
+//    }
 }

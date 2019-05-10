@@ -48,12 +48,13 @@ public class SongStatisticsDayLog extends BaseEntity implements Serializable {
      * 今日歌曲热度
      */
     @Column(name = "hot_point")
-    private Float hotPoint;
+    private Double hotPoint;
 
     /**
      * 今日歌曲推荐指数
      */
     @Column(name = "recommend_point")
-    private Float recommendPoint;
+    private Double recommendPoint;
+
 
 }
