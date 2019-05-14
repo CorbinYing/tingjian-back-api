@@ -1,6 +1,8 @@
 package org.corbin.client.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.codec.digest.Md5Crypt;
+import org.apache.tomcat.util.security.MD5Encoder;
 import org.corbin.client.repository.*;
 import org.corbin.common.base.Response.ResponseCode;
 import org.corbin.common.base.exception.ServiceException;
@@ -8,12 +10,15 @@ import org.corbin.common.base.service.BaseService;
 import org.corbin.common.entity.UserInfo;
 import org.corbin.common.util.IdHelper;
 import org.corbin.common.util.InitializeUtil;
+import org.corbin.common.util.MD5Util;
 import org.corbin.common.util.PatternUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+
+import java.security.MessageDigest;
 
 
 /**
@@ -66,7 +71,7 @@ public class UserInfoService extends BaseService {
             throw new ServiceException(ResponseCode.ERR_11001);
         }
 
-        boolean flag = pwd.equals(userInfo.getUserPwd());
+        boolean flag = MD5Util.string2MD5(pwd).equals(userInfo.getUserPwd());
         if (!flag) {
             //密码不正确
             throw new ServiceException(ResponseCode.ERR_11002);
@@ -95,6 +100,7 @@ public class UserInfoService extends BaseService {
             throw new ServiceException(ResponseCode.ERR_13001);
         }
         userInfo.setUserAccount(userInfo.getUserMail());
+        userInfo.setUserPwd(MD5Util.string2MD5(userInfo.getUserPwd()));
         return userInfoRepository.saveAndFlush(userInfo);
     }
 
