@@ -70,7 +70,7 @@ public class UserInfoController extends BaseClientController {
         verificationLogService.checkVerificationCode(registerCode, vo.getUserMail());
         userInfoService.createUser(newUser);
 
-        return ResponseResult.newInstance(ResponseCode.SUCC_0, newUser);
+        return ResponseResult.newInstance(ResponseCode.SUCC_0);
 
     }
 

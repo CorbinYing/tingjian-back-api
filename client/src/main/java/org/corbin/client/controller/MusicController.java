@@ -14,14 +14,11 @@ import org.corbin.common.base.vo.BaseVo;
 import org.corbin.common.entity.SongInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RequestMapping("/music")
 @RestController
@@ -95,9 +92,7 @@ public class MusicController extends BaseClientController {
     public ResponseResult searchSongs(@RequestBody SearchSongVo vo) {
         recordLoginActiveUpdate(vo);
 
-        List<SongInfo> songInfoList = songInfoService.searchSongList(vo.getSearchValue());
-        Page<SongInfo> page = new PageImpl<>(songInfoList, vo.of(), songInfoList.size());
-
+        Page<SongInfo> page = songInfoService.searchSongPage(vo.getSearchValue(),vo.of());
         Page<SongInfoVo> pageVo = convertWithCollectStatus(vo.getUserId(), page);
         return ResponseResult.newInstance(ResponseCode.SUCC_0, pageVo);
 

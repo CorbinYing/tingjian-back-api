@@ -204,6 +204,10 @@ public class SongInfoService extends BaseService {
         return songInfoRepository.findAllBySongNameLike("%" + searchValue + "%");
     }
 
+    public Page<SongInfo> searchSongPage(@NonNull String searchValue,Pageable pageable) {
+        return songInfoRepository.findAllBySongNameLike("%" + searchValue + "%",pageable);
+    }
+
 
     /**
      * 歌曲点赞功能

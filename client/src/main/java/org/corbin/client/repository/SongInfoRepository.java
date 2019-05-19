@@ -25,6 +25,7 @@ public interface SongInfoRepository extends JpaRepository<SongInfo, Long>, JpaSp
 
 
     List<SongInfo> findAllBySongNameLike(String songName);
+    Page<SongInfo> findAllBySongNameLike(String songName,Pageable pageable);
 
     /**
      * 根据歌曲类型查找
