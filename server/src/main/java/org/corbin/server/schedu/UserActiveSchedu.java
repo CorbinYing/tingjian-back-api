@@ -27,7 +27,7 @@ public class UserActiveSchedu {
      * 定时检查用户的状态，超过30min自动下线
      */
 
-    @Scheduled(cron = "30 */1 * * * ? ")
+    @Scheduled(cron = "0/20 * * * * ?")
     @Async("myThreadPoolTaskExcuror")
     void checkUserActiveStatus() {
 

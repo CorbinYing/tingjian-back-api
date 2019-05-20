@@ -39,7 +39,7 @@ public class UserActiveInfoService extends BaseService {
      */
     @Transactional
     public void deleteUserActive(@NonNull Long userId){
-         userActiveInfoRepository.deleteById(userId);
+         userActiveInfoRepository.deleteByUserId(userId);
     }
 
     public List<UserActiveInfo> findAll(){

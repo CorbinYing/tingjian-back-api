@@ -9,8 +9,6 @@ import org.corbin.server.repository.SongStatisticsDayLogRepository;
 import org.corbin.server.service.SongInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -35,8 +33,8 @@ public class SongActiveSchedu {
      */
 
   //  @Scheduled(cron = "0 0 0 * * ?")
-    @Scheduled(cron = "0 0/1 * * * ? ")
-    @Async("myThreadPoolTaskExcuror")
+//    @Scheduled(cron = "0 0/1 * * * ? ")
+//    @Async("myThreadPoolTaskExcuror")
     void updateSongStatisticsLog() {
         List<SongStatisticsDayLog> list = songStatisticsDayLogRepository.findAll();
         if (list == null) {
@@ -62,8 +60,8 @@ public class SongActiveSchedu {
      * 定时更新歌曲的热度
      */
 //    @Scheduled(cron = "0 */5 * * * ? ")
-    @Scheduled(cron = "0/5 * * * * ? ")
-    @Async("myThreadPoolTaskExcuror")
+//    @Scheduled(cron = "0/5 * * * * ? ")
+//    @Async("myThreadPoolTaskExcuror")
     void updateSongHotStatus() {
         List<SongStatisticsDayLog> list = songStatisticsDayLogRepository.findAll();
         for (SongStatisticsDayLog songStatisticsDayLog : list
@@ -83,8 +81,8 @@ public class SongActiveSchedu {
      * 0.16:0.16:0.8:0.24:0.24:0.12
      */
    // @Scheduled(cron = "0 */10 * * * ? ")
-    @Scheduled(cron = "0/10 * * * * ? ")
-    @Async("myThreadPoolTaskExcuror")
+ //   @Scheduled(cron = "0/10 * * * * ? ")
+//    @Async("myThreadPoolTaskExcuror")
     void updateSongRecommendStatus() {
 
         List<SongStatisticsDayLog> list = songStatisticsDayLogRepository.findAll();
@@ -138,8 +136,8 @@ public class SongActiveSchedu {
     }
 
 
-    @Scheduled(cron = "0/3 * * * * ? ")
-    @Async("myThreadPoolTaskExcuror")
+//    @Scheduled(cron = "0/3 * * * * ? ")
+//    @Async("myThreadPoolTaskExcuror")
     void lie() {
         List<SongInfo>songInfoList=songInfoRepository.findAllNeedAddIntoLog();
         List<SongStatisticsDayLog> logList=Lists.newArrayList();
