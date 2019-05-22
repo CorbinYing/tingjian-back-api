@@ -4,10 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.corbin.client.repository.CollectInfoRepository;
 import org.corbin.client.repository.SingerInfoRepository;
 import org.corbin.client.repository.SongInfoRepository;
+import org.corbin.client.repository.SongStatisticsDayLogRepository;
 import org.corbin.common.base.constant.EntityPreset;
 import org.corbin.common.base.service.BaseService;
 import org.corbin.common.entity.CollectInfo;
 import org.corbin.common.entity.SongInfo;
+import org.corbin.common.entity.SongStatisticsDayLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +25,8 @@ public class CollectInfoService extends BaseService {
     private SongInfoRepository songInfoRepository;
     @Autowired
     private SingerInfoRepository singerInfoRepository;
+    @Autowired
+    private SongStatisticsDayLogRepository songStatisticsDayLogRepository;
 
 
     /**
@@ -64,26 +68,7 @@ public class CollectInfoService extends BaseService {
         return collectInfoRepository.findAllByUserIdAndCollectType(pageable, userId, collectType);
     }
 
-//    /**
-//     * 编辑收藏信息，添加或删除
-//     * @param userId
-//     * @param songId
-//     * @return
-//     */
-//    public CollectInfo editCollectSong(@NonNull Long userId, @NonNull Long songId) {
-//        CollectInfo collectInfo = new CollectInfo();
-//        collectInfo.setUserId(userId);
-//        collectInfo.setCollectId(songId);
-//
-//        Optional<CollectInfo> collect = collectInfoRepository.findOne(Example.of(collectInfo));
-//        if (collect.isPresent()) {
-//            delCollectSong(collect.get());
-//        } else {
-//            insertCollectSong(collectInfo);
-//        }
-//        return collect.isPresent() ? collect.get() : collectInfo;
-//
-//    }
+
 
     /**
      * 删除收藏歌曲
@@ -134,6 +119,18 @@ public class CollectInfoService extends BaseService {
         collectInfo.setCollectType(EntityPreset.CollectType.song.getCollectTypeEncoding());
         collectInfo.setCollectSongType(songInfo.getSongType());
 
+
+        //记录今天的收藏数
+        SongStatisticsDayLog songStatisticsDayLog= songStatisticsDayLogRepository.findBySongId(songId);
+        if (songStatisticsDayLog==null){
+            songStatisticsDayLog=new SongStatisticsDayLog();
+            songStatisticsDayLog.setSongId(songId);
+        }
+
+        Integer todayCollectTimes=songStatisticsDayLog.getCollectTimesToday();
+        todayCollectTimes=todayCollectTimes==null?0:todayCollectTimes;
+        songStatisticsDayLog.setCollectTimesToday(todayCollectTimes+1);
+        songStatisticsDayLogRepository.save(songStatisticsDayLog);
         return collectInfoRepository.saveAndFlush(collectInfo);
     }
 

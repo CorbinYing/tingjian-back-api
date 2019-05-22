@@ -23,6 +23,7 @@ import javax.validation.Valid;
 @Slf4j
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class UserInfoController extends BaseClientController {
     @Autowired
     private UserInfoService userInfoService;

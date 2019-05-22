@@ -6,10 +6,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -64,7 +61,12 @@ public class SongInfo extends BaseEntity implements Serializable {
     @Column(name = "song_star")
     private Long songStar;
 
-
+    /**
+     * 关联歌手信息
+     */
+    @ManyToOne()
+    @JoinColumn(name = "singer_id",referencedColumnName = "singer_id",insertable = false,updatable = false)
+    private SingerInfo singerInfo;
 
 
 }

@@ -3,10 +3,8 @@ package org.corbin.common.base.exception;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.corbin.common.base.Response.ResponseResult;
-import org.corbin.common.base.exception.ServiceException;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * @Author: Corbin

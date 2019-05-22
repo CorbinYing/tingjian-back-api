@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.Setter;
 import org.corbin.common.base.vo.BaseVo;
+import org.corbin.common.entity.SingerInfo;
 import org.corbin.common.entity.SongInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -19,8 +20,9 @@ public class SongInfoVo extends BaseVo {
 
     private String songId;
 
-
+    private String singerDesc;
     private String singerId;
+    private String singerName;
 
     private String songName;
 
@@ -56,7 +58,7 @@ public class SongInfoVo extends BaseVo {
         List<SongInfo> songInfoList = songInfoPage.getContent();
         List<SongInfoVo> songInfoVoList = Lists.newArrayList();
         for (SongInfo songInfo : songInfoList) {
-            songInfoVoList.add(convert2Do(songInfo));
+            songInfoVoList.add(convert2Vo(songInfo));
         }
 
 
@@ -65,7 +67,7 @@ public class SongInfoVo extends BaseVo {
     }
 
 
-    public static SongInfoVo convert2Do(@NonNull SongInfo songInfo) {
+    public static SongInfoVo convert2Vo(@NonNull SongInfo songInfo) {
 
         SongInfoVo songInfoVo = new SongInfoVo();
         BeanUtils.copyProperties(songInfo, songInfoVo);
@@ -75,9 +77,28 @@ public class SongInfoVo extends BaseVo {
         songInfoVo.setSongId(songInfo.getSongId().toString());
         songInfoVo.setSongCollectStatus(false);
 
+        SingerInfo singerInfo=songInfo.getSingerInfo();
+        songInfoVo.setSingerName(singerInfo==null?null:singerInfo.getSingerName());
+        songInfoVo.setSingerDesc(singerInfo==null?null:singerInfo.getSingerDesc());
         return songInfoVo;
     }
 
+
+    public static SongInfoVo convert2VoWithCollect(SongInfo songInfo,List<SongInfo> collectSongList){
+        if (songInfo == null) {
+            return null;
+        }
+        SongInfoVo songInfoVo=convert2Vo(songInfo);
+        if (collectSongList != null) {
+            for (int i = 0; i < collectSongList.size(); i++) {
+                if (collectSongList.get(i).getSongId().toString().equals(songInfoVo.getSongId())){
+                    songInfoVo.setSongCollectStatus(true);
+                }
+            }
+        }
+        return songInfoVo;
+
+    }
     /**
      * 转为vo，同时标住用户已收藏歌曲
      *
@@ -85,19 +106,6 @@ public class SongInfoVo extends BaseVo {
      * @param collectSongList
      * @return
      */
-//    public static Page<SongInfoVo> convert2SongInfoWithCollect0(Page<SongInfo> songInfoPage, List<CollectInfo> collectSongList) {
-//        Page<SongInfoVo> page = convert2PageVO(songInfoPage);
-//        if (collectSongList != null) {
-//            for (int i = 0; i < collectSongList.size(); i++) {
-//                for (SongInfoVo vo : page.getContent()) {
-//                    if (collectSongList.get(i).getCollectId().toString().equals(vo.getSongId())) {
-//                        vo.setSongCollectStatus(true);
-//                    }
-//                }
-//            }
-//        }
-//        return page;
-//    }
     public static Page<SongInfoVo> convert2SongInfoWithCollect(Page<SongInfo> songInfoPage, List<SongInfo> collectSongList) {
         if (songInfoPage == null) {
             return null;

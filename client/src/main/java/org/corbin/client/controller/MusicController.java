@@ -2,10 +2,7 @@ package org.corbin.client.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.corbin.client.base.controller.BaseClientController;
-import org.corbin.client.service.SongInfoService;
-import org.corbin.client.service.SongStatisticsDayLogService;
-import org.corbin.client.service.UserActiveInfoService;
-import org.corbin.client.service.UserInfoService;
+import org.corbin.client.service.*;
 import org.corbin.client.vo.music.SongInfoVo;
 import org.corbin.client.vo.search.SearchSongVo;
 import org.corbin.common.base.Response.ResponseCode;
@@ -15,14 +12,14 @@ import org.corbin.common.entity.SongInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("/music")
 @RestController
 @Slf4j
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class MusicController extends BaseClientController {
 
     @Autowired
@@ -33,6 +30,8 @@ public class MusicController extends BaseClientController {
     private UserInfoService userInfoService;
     @Autowired
     private UserActiveInfoService userActiveInfoService;
+    @Autowired
+    private CollectInfoService collectInfoService;
 
 
     /**
@@ -92,7 +91,7 @@ public class MusicController extends BaseClientController {
     public ResponseResult searchSongs(@RequestBody SearchSongVo vo) {
         recordLoginActiveUpdate(vo);
 
-        Page<SongInfo> page = songInfoService.searchSongPage(vo.getSearchValue(),vo.of());
+        Page<SongInfo> page = songInfoService.searchSongPage(vo.getSearchValue(), vo.of());
         Page<SongInfoVo> pageVo = convertWithCollectStatus(vo.getUserId(), page);
         return ResponseResult.newInstance(ResponseCode.SUCC_0, pageVo);
 
@@ -134,4 +133,28 @@ public class MusicController extends BaseClientController {
     }
 
 
+    /**
+     * 根据歌曲id查找歌曲信息
+     * userId
+     * songId
+     *
+     * @param vo
+     * @return
+     */
+    @PostMapping("/search/song-id")
+    public ResponseResult searchSongBysongId(@RequestBody SongInfoVo vo) {
+        recordLoginActiveUpdate(vo.getUserId());
+
+        SongInfo songInfo = songInfoService.searchSongBySongId(Long.valueOf(vo.getSongId()));
+        SongInfoVo songInfoVo;
+
+        if (userActiveInfoService.isUserLogin(vo.getUserId())) {
+            List<SongInfo> collectInfoList=songInfoService.getCollectSongInfoList(vo.getUserId());
+             songInfoVo=SongInfoVo.convert2VoWithCollect(songInfo,collectInfoList);
+        }else {
+            songInfoVo=SongInfoVo.convert2Vo(songInfo);
+        }
+
+        return ResponseResult.newInstance(ResponseCode.SUCC_0, songInfoVo);
+    }
 }

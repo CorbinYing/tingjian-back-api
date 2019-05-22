@@ -24,4 +24,11 @@ public interface SongStatisticsDayLogRepository extends JpaRepository<SongStatis
      * @return
      */
     Page<SongStatisticsDayLog> findAllByOrderByRecommendPointDesc(Pageable pageable);
+
+    /**
+     * 根据歌曲id查询统计数据
+     * @param songId
+     * @return
+     */
+    SongStatisticsDayLog findBySongId(Long songId);
 }

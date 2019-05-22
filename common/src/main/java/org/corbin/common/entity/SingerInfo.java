@@ -36,5 +36,8 @@ public class SingerInfo extends BaseEntity implements Serializable {
     @Column(name = "singer_desc")
     private String singerDesc;
 
+//    @OneToMany(mappedBy = "singerInfo")
+//    private List<SongInfo> songInfoList;
+
 
 }

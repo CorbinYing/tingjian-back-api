@@ -221,9 +221,32 @@ public class SongInfoService extends BaseService {
             log.info("未找到此歌曲");
             return null;
         }
+        //记录歌曲的总点赞数
         long songStar = songInfo.getSongStar() == null ? 0 : songInfo.getSongStar();
         songInfo.setSongStar(songStar + 1);
         songInfoRepository.save(songInfo);
+        //记录今天的点赞数
+       SongStatisticsDayLog songStatisticsDayLog= songStatisticsDayLogRepository.findBySongId(songId);
+        if (songStatisticsDayLog==null){
+            songStatisticsDayLog=new SongStatisticsDayLog();
+            songStatisticsDayLog.setSongId(songId);
+        }
+
+        Integer todayStartTimes=songStatisticsDayLog.getStarTimesToday();
+        todayStartTimes=todayStartTimes==null?0:todayStartTimes;
+        songStatisticsDayLog.setStarTimesToday(todayStartTimes+1);
+        songStatisticsDayLogRepository.save(songStatisticsDayLog);
+
         return songInfo;
+    }
+
+
+    /**
+     *
+     * @param songId
+     * @return
+     */
+    public SongInfo searchSongBySongId(@NonNull Long songId){
+       return songInfoRepository.findBySongId(songId);
     }
 }

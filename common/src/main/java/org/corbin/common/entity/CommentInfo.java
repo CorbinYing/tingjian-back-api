@@ -26,8 +26,8 @@ public class CommentInfo extends AbstractBaseEntity  implements Serializable {
     @Column(name = "comment_content")
     private String commentContent;
 
-    @Column(name = "comment_star")
-    private Integer commentStar;
+    @Column(name = "song_id")
+    private Long songId;
 
     @Column(name = "user_id")
     private Long userId;
