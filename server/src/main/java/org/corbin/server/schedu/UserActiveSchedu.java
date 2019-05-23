@@ -24,10 +24,11 @@ public class UserActiveSchedu {
     private UserActiveInfoService userActiveInfoService;
 
     /**
-     * 定时检查用户的状态，超过30min自动下线
+     * 30s检查一次
+     * 用户的状态，超过30min自动下线
      */
 
-    @Scheduled(cron = "0/20 * * * * ?")
+    @Scheduled(cron = "0/30 * * * * ?")
     @Async("myThreadPoolTaskExcuror")
     void checkUserActiveStatus() {
 

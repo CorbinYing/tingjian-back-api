@@ -9,7 +9,6 @@ import org.corbin.common.base.constant.EntityPreset;
 import org.corbin.common.base.service.BaseService;
 import org.corbin.common.entity.CollectInfo;
 import org.corbin.common.entity.SongInfo;
-import org.corbin.common.entity.SongStatisticsDayLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +26,8 @@ public class CollectInfoService extends BaseService {
     private SingerInfoRepository singerInfoRepository;
     @Autowired
     private SongStatisticsDayLogRepository songStatisticsDayLogRepository;
+    @Autowired
+    private  SongStatisticsDayLogService songStatisticsDayLogService;
 
 
     /**
@@ -119,18 +120,9 @@ public class CollectInfoService extends BaseService {
         collectInfo.setCollectType(EntityPreset.CollectType.song.getCollectTypeEncoding());
         collectInfo.setCollectSongType(songInfo.getSongType());
 
+        //更新收藏次数
+        songStatisticsDayLogService.updateCollectNum(songId);
 
-        //记录今天的收藏数
-        SongStatisticsDayLog songStatisticsDayLog= songStatisticsDayLogRepository.findBySongId(songId);
-        if (songStatisticsDayLog==null){
-            songStatisticsDayLog=new SongStatisticsDayLog();
-            songStatisticsDayLog.setSongId(songId);
-        }
-
-        Integer todayCollectTimes=songStatisticsDayLog.getCollectTimesToday();
-        todayCollectTimes=todayCollectTimes==null?0:todayCollectTimes;
-        songStatisticsDayLog.setCollectTimesToday(todayCollectTimes+1);
-        songStatisticsDayLogRepository.save(songStatisticsDayLog);
         return collectInfoRepository.saveAndFlush(collectInfo);
     }
 

@@ -135,6 +135,7 @@ public class MusicController extends BaseClientController {
 
     /**
      * 根据歌曲id查找歌曲信息
+     * (进入歌曲详情页面)
      * userId
      * songId
      *
@@ -154,7 +155,8 @@ public class MusicController extends BaseClientController {
         }else {
             songInfoVo=SongInfoVo.convert2Vo(songInfo);
         }
-
+        //用户进入详情页面默认为一次播放次数
+        songStatisticsDayLogService.updatePlayNum(songInfo.getSongId());
         return ResponseResult.newInstance(ResponseCode.SUCC_0, songInfoVo);
     }
 }

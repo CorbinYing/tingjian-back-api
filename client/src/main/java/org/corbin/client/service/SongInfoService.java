@@ -33,6 +33,8 @@ public class SongInfoService extends BaseService {
     private SongInfoRepository songInfoRepository;
     @Autowired
     private SongStatisticsDayLogRepository songStatisticsDayLogRepository;
+    @Autowired
+    private  SongStatisticsDayLogService songStatisticsDayLogService;
 
     public SongInfo insertSong(SongInfo songInfo) {
         return songInfoRepository.saveAndFlush(songInfo);
@@ -225,17 +227,9 @@ public class SongInfoService extends BaseService {
         long songStar = songInfo.getSongStar() == null ? 0 : songInfo.getSongStar();
         songInfo.setSongStar(songStar + 1);
         songInfoRepository.save(songInfo);
-        //记录今天的点赞数
-       SongStatisticsDayLog songStatisticsDayLog= songStatisticsDayLogRepository.findBySongId(songId);
-        if (songStatisticsDayLog==null){
-            songStatisticsDayLog=new SongStatisticsDayLog();
-            songStatisticsDayLog.setSongId(songId);
-        }
 
-        Integer todayStartTimes=songStatisticsDayLog.getStarTimesToday();
-        todayStartTimes=todayStartTimes==null?0:todayStartTimes;
-        songStatisticsDayLog.setStarTimesToday(todayStartTimes+1);
-        songStatisticsDayLogRepository.save(songStatisticsDayLog);
+        //更新点赞数
+        songStatisticsDayLogService.updateStarNum(songId);
 
         return songInfo;
     }

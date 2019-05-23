@@ -9,6 +9,8 @@ import org.corbin.server.repository.SongStatisticsDayLogRepository;
 import org.corbin.server.service.SongInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,10 +19,6 @@ import java.util.Random;
 @Component
 @Slf4j
 public class SongActiveSchedu {
-//    @Autowired
-//    @Qualifier("createThreadPoolTaskExcuror")
-//    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
-
     @Autowired
     private SongStatisticsDayLogRepository songStatisticsDayLogRepository;
     @Autowired
@@ -29,12 +27,14 @@ public class SongActiveSchedu {
     private SongInfoRepository songInfoRepository;
 
     /**
+     * 每日更新
      * 凌晨更新，播放次数，收藏次数，点赞次数
      */
 
-  //  @Scheduled(cron = "0 0 0 * * ?")
-//    @Scheduled(cron = "0 0/1 * * * ? ")
-//    @Async("myThreadPoolTaskExcuror")
+    //实验时，模拟2分钟为1天
+    //  @Scheduled(cron = "0 0 0 * * ?")
+    @Scheduled(cron = "0 0/2 * * * ? ")
+    @Async("myThreadPoolTaskExcuror")
     void updateSongStatisticsLog() {
         List<SongStatisticsDayLog> list = songStatisticsDayLogRepository.findAll();
         if (list == null) {
@@ -57,11 +57,12 @@ public class SongActiveSchedu {
     }
 
     /**
-     * 定时更新歌曲的热度
+     * 定时更新歌曲的热度,20分钟更新一次
      */
-//    @Scheduled(cron = "0 */5 * * * ? ")
-//    @Scheduled(cron = "0/5 * * * * ? ")
-//    @Async("myThreadPoolTaskExcuror")
+//    @Scheduled(cron = "0 0/20 * * * ? ")
+    //实验时，30s更新一次
+    @Scheduled(cron = "0/20 * * * * ? ")
+    @Async("myThreadPoolTaskExcuror")
     void updateSongHotStatus() {
         List<SongStatisticsDayLog> list = songStatisticsDayLogRepository.findAll();
         for (SongStatisticsDayLog songStatisticsDayLog : list
@@ -80,9 +81,10 @@ public class SongActiveSchedu {
      * 即4:4:2:6:6:3   新歌×0.6  旧歌×0.4
      * 0.16:0.16:0.8:0.24:0.24:0.12
      */
-   // @Scheduled(cron = "0 */10 * * * ? ")
- //   @Scheduled(cron = "0/10 * * * * ? ")
-//    @Async("myThreadPoolTaskExcuror")
+    // @Scheduled(cron = "0 10/20 * * * ? ")
+    //实验时模拟20s更新一次
+    @Scheduled(cron = "10/20 * * * * ? ")
+    @Async("myThreadPoolTaskExcuror")
     void updateSongRecommendStatus() {
 
         List<SongStatisticsDayLog> list = songStatisticsDayLogRepository.findAll();
@@ -136,38 +138,38 @@ public class SongActiveSchedu {
     }
 
 
-//    @Scheduled(cron = "0/3 * * * * ? ")
-//    @Async("myThreadPoolTaskExcuror")
+    /**
+     * 作弊程序
+     * 模拟用户进行点赞、收藏、播放歌曲，
+     * 模拟大数据下的用户操作，采集用户行为数据，用于计算歌曲的热度、推荐度
+     */
+    @Scheduled(cron = "5/10 * * * * ? ")
+    @Async("myThreadPoolTaskExcuror")
     void lie() {
-        List<SongInfo>songInfoList=songInfoRepository.findAllNeedAddIntoLog();
-        List<SongStatisticsDayLog> logList=Lists.newArrayList();
-        //添加没有的歌曲
-        if (songInfoList!=null){
-            for (SongInfo songInfo:songInfoList){
-                SongStatisticsDayLog log=new SongStatisticsDayLog();
+        List<SongInfo> songInfoList = songInfoRepository.findAllNeedAddIntoLog();
+        List<SongStatisticsDayLog> logList = Lists.newArrayList();
+        //添加日统计表中没有的歌曲
+        if (songInfoList != null) {
+            for (SongInfo songInfo : songInfoList) {
+                SongStatisticsDayLog log = new SongStatisticsDayLog();
                 log.setSongId(songInfo.getSongId());
                 logList.add(log);
             }
             songStatisticsDayLogRepository.saveAll(logList);
         }
 
-        //---度处理
-
-        List<SongStatisticsDayLog> songStatisticsDayLogList=songStatisticsDayLogRepository.findAll();
-        for (int i=0;i<100;i++){
-            Random random=new Random();
-           int index= random.nextInt(songStatisticsDayLogList.size());
-           songStatisticsDayLogList.get(index).setStarTimesToday(random.nextInt(100));
+        //-模拟用户操作，进行度处理
+        //每次选取100首歌，随机增加点赞、收藏、播放次数
+        List<SongStatisticsDayLog> songStatisticsDayLogList = songStatisticsDayLogRepository.findAll();
+        for (int i = 0; i < 100; i++) {
+            Random random = new Random();
+            int index = random.nextInt(songStatisticsDayLogList.size());
+            songStatisticsDayLogList.get(index).setStarTimesToday(random.nextInt(100));
             songStatisticsDayLogList.get(index).setPlayTimesToday(random.nextInt(1000));
             songStatisticsDayLogList.get(index).setCollectTimesToday(random.nextInt(100));
 
         }
         songStatisticsDayLogRepository.saveAll(songStatisticsDayLogList);
-
-
-
-
-
 
 
     }
