@@ -25,7 +25,12 @@ public interface CollectInfoRepository extends JpaRepository<CollectInfo, Long> 
 
     List<CollectInfo> findAllByUserIdAndCollectType(Long userId, Integer collectType);
 
-    @Query(value = "SELECT MAX(collect_info.collect_song_type) from collect_info WHERE user_id=?1", nativeQuery = true)
+    /**
+     * 最喜欢的2中歌曲类型
+     * @param userId
+     * @return
+     */
+    @Query(value = "SELECT collect_song_type from (SELECT collect_info.collect_song_type,COUNT(collect_info.collect_song_type) as collect_song_type_count FROM collect_info WHERE user_id = ?1 GROUP BY collect_song_type ORDER BY collect_song_type_count desc LIMIT 2) as temp_table", nativeQuery = true)
     List<Integer> findMostLoveSongType(Long userId);
 
 

@@ -174,7 +174,7 @@ public class SongInfoService extends BaseService {
             throw new ServiceException(ResponseCode.SUCC_1);
         }
 
-        Page<SongInfo> recommendSongPage = songInfoRepository.findAllBySongType(mostLoveSongType, pageable);
+        Page<SongInfo> recommendSongPage = songInfoRepository.findAllBySongTypeIn(mostLoveSongType, pageable);
         return recommendSongPage;
     }
 

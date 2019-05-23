@@ -31,7 +31,7 @@ public interface SongInfoRepository extends JpaRepository<SongInfo, Long>, JpaSp
      * 根据歌曲类型查找
      * @return
      */
-    Page<SongInfo>findAllBySongType(List<Integer> songTypeList,Pageable pageable);
+    Page<SongInfo>findAllBySongTypeIn(List<Integer> songTypeList,Pageable pageable);
 
     /**
      *
