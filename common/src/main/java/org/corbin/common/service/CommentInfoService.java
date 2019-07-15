@@ -1,9 +1,9 @@
-package org.corbin.client.service;
+package org.corbin.common.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.corbin.client.repository.*;
 import org.corbin.common.base.service.BaseService;
 import org.corbin.common.entity.CommentInfo;
+import org.corbin.common.repository.*;
 import org.corbin.common.util.IdHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class CommentInfoService extends BaseService {
+public class CommentInfoService extends BaseService<CommentInfo,Long> {
     @Autowired
     private CollectInfoRepository collectInfoRepository;
     @Autowired

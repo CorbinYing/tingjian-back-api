@@ -1,13 +1,13 @@
-package org.corbin.client.repository;
+package org.corbin.common.repository;
 
+import org.corbin.common.base.dao.BaseRepository;
 import org.corbin.common.entity.CommentInfo;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface CommentInfoRepository extends JpaRepository<CommentInfo,Long> {
+public interface CommentInfoRepository extends BaseRepository<CommentInfo,Long> {
     /**
      * find comment by songid list
      * @param songId

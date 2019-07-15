@@ -1,7 +1,7 @@
-package org.corbin.client.repository;
+package org.corbin.common.repository;
 
+import org.corbin.common.base.dao.BaseRepository;
 import org.corbin.common.entity.UserInfo;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  * @Descripton:
  */
 @Repository
-public interface UserInfoRepository extends JpaRepository<UserInfo,Long> {
+public interface UserInfoRepository extends BaseRepository<UserInfo,Long> {
 
     UserInfo findByUserAccount(String userAccount);
 

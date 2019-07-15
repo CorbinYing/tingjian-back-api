@@ -1,11 +1,11 @@
-package org.corbin.client.service;
+package org.corbin.common.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.corbin.client.repository.*;
 import org.corbin.common.base.Response.ResponseCode;
 import org.corbin.common.base.exception.ServiceException;
 import org.corbin.common.base.service.BaseService;
 import org.corbin.common.entity.VerificationLog;
+import org.corbin.common.repository.*;
 import org.corbin.common.util.MailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
@@ -19,7 +19,7 @@ import java.util.Random;
 
 @Service
 @Slf4j
-public class VerificationLogService extends BaseService {
+public class VerificationLogService extends BaseService<VerificationLog,Long> {
     @Autowired
     private CollectInfoRepository collectInfoRepository;
     @Autowired

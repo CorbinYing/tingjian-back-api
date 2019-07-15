@@ -1,14 +1,14 @@
-package org.corbin.client.repository;
+package org.corbin.common.repository;
 
+import org.corbin.common.base.dao.BaseRepository;
 import org.corbin.common.entity.SingerInfo;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface SingerInfoRepository extends JpaRepository<SingerInfo,Long> {
+public interface SingerInfoRepository extends BaseRepository<SingerInfo,Long> {
 
     /**
      * find Singer by singerName

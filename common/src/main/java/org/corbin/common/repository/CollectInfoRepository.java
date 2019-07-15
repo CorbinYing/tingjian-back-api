@@ -1,16 +1,16 @@
-package org.corbin.client.repository;
+package org.corbin.common.repository;
 
+import org.corbin.common.base.dao.BaseRepository;
 import org.corbin.common.entity.CollectInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface CollectInfoRepository extends JpaRepository<CollectInfo, Long> {
+public interface CollectInfoRepository extends BaseRepository<CollectInfo, Long> {
 
     /**
      * 查找我的收藏

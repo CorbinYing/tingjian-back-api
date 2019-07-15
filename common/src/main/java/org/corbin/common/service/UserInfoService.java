@@ -1,13 +1,11 @@
-package org.corbin.client.service;
+package org.corbin.common.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.codec.digest.Md5Crypt;
-import org.apache.tomcat.util.security.MD5Encoder;
-import org.corbin.client.repository.*;
 import org.corbin.common.base.Response.ResponseCode;
 import org.corbin.common.base.exception.ServiceException;
 import org.corbin.common.base.service.BaseService;
 import org.corbin.common.entity.UserInfo;
+import org.corbin.common.repository.*;
 import org.corbin.common.util.IdHelper;
 import org.corbin.common.util.InitializeUtil;
 import org.corbin.common.util.MD5Util;
@@ -18,8 +16,6 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.security.MessageDigest;
-
 
 /**
  * @Author: Corbin
@@ -29,7 +25,7 @@ import java.security.MessageDigest;
  */
 @Service
 @Slf4j
-public class UserInfoService extends BaseService {
+public class UserInfoService extends BaseService<UserInfo,Long> {
     @Autowired
     private CollectInfoRepository collectInfoRepository;
     @Autowired

@@ -1,11 +1,12 @@
-package org.corbin.client.service;
+package org.corbin.common.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.corbin.client.repository.UserInfoRepository;
+
 import org.corbin.common.base.service.BaseService;
 import org.corbin.common.entity.UserActiveInfo;
-import org.corbin.client.repository.UserActiveInfoRepository;
 import org.corbin.common.entity.UserInfo;
+import org.corbin.common.repository.UserActiveInfoRepository;
+import org.corbin.common.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class UserActiveInfoService extends BaseService {
+public class UserActiveInfoService extends BaseService<UserActiveInfo,Long> {
     @Autowired
     private UserActiveInfoRepository userActiveInfoRepository;
     @Autowired
@@ -72,9 +73,9 @@ public class UserActiveInfoService extends BaseService {
         userActiveInfoRepository.deleteByUserId(userId);
     }
 
-    public List<UserActiveInfo> findAll() {
-        return userActiveInfoRepository.findAll();
-    }
+//    public List<UserActiveInfo> findAll() {
+//        return userActiveInfoRepository.findAll();
+//    }
 
 
     public UserActiveInfo findByUserId(Long userId) {

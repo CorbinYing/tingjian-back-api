@@ -1,9 +1,6 @@
 package org.corbin.client.base.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.corbin.client.service.SongInfoService;
-import org.corbin.client.service.UserActiveInfoService;
-import org.corbin.client.service.UserInfoService;
 import org.corbin.client.vo.music.SongInfoVo;
 import org.corbin.common.base.Response.ResponseCode;
 import org.corbin.common.base.controller.BaseController;
@@ -11,6 +8,9 @@ import org.corbin.common.base.exception.ServiceException;
 import org.corbin.common.base.vo.BaseVo;
 import org.corbin.common.entity.SongInfo;
 import org.corbin.common.entity.UserActiveInfo;
+import org.corbin.common.service.SongInfoService;
+import org.corbin.common.service.UserActiveInfoService;
+import org.corbin.common.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.lang.NonNull;

@@ -1,11 +1,11 @@
-package org.corbin.client.service;
+package org.corbin.common.service;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
-import org.corbin.client.repository.*;
 import org.corbin.common.base.service.BaseService;
 import org.corbin.common.entity.SingerInfo;
+import org.corbin.common.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.*;
 
 @Service
 @Slf4j
-public class SingerInfoService extends BaseService {
+public class SingerInfoService extends BaseService <SingerInfo,Long>{
     @Autowired
     private CollectInfoRepository collectInfoRepository;
     @Autowired

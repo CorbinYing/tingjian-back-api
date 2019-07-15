@@ -1,17 +1,16 @@
-package org.corbin.client.repository;
+package org.corbin.common.repository;
 
+import org.corbin.common.base.dao.BaseRepository;
 import org.corbin.common.entity.SongInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface SongInfoRepository extends JpaRepository<SongInfo, Long>, JpaSpecificationExecutor<SongInfo> {
+public interface SongInfoRepository extends BaseRepository<SongInfo, Long>{
 
     SongInfo findBySongName(String songName);
 
@@ -25,13 +24,13 @@ public interface SongInfoRepository extends JpaRepository<SongInfo, Long>, JpaSp
 
 
     List<SongInfo> findAllBySongNameLike(String songName);
-    Page<SongInfo> findAllBySongNameLike(String songName,Pageable pageable);
+    Page<SongInfo> findAllBySongNameLike(String songName, Pageable pageable);
 
     /**
      * 根据歌曲类型查找
      * @return
      */
-    Page<SongInfo>findAllBySongTypeIn(List<Integer> songTypeList,Pageable pageable);
+    Page<SongInfo>findAllBySongTypeIn(List<Integer> songTypeList, Pageable pageable);
 
     /**
      *
@@ -39,7 +38,7 @@ public interface SongInfoRepository extends JpaRepository<SongInfo, Long>, JpaSp
      * @param pageable
      * @return
      */
-    Page<SongInfo>findAllBySingerIdIn(List<Long> singerIdList,Pageable pageable);
+    Page<SongInfo>findAllBySingerIdIn(List<Long> singerIdList, Pageable pageable);
 
 
 }

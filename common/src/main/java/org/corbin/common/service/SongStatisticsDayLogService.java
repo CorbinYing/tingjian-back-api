@@ -1,14 +1,19 @@
-package org.corbin.client.service;
+package org.corbin.common.service;
 
-import org.corbin.client.repository.*;
 import org.corbin.common.base.service.BaseService;
 import org.corbin.common.entity.SongStatisticsDayLog;
+import org.corbin.common.repository.CollectInfoRepository;
+import org.corbin.common.repository.CommentInfoRepository;
+import org.corbin.common.repository.SingerInfoRepository;
+import org.corbin.common.repository.SongInfoRepository;
+import org.corbin.common.repository.SongStatisticsDayLogRepository;
+import org.corbin.common.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SongStatisticsDayLogService extends BaseService {
+public class SongStatisticsDayLogService extends BaseService<SongStatisticsDayLog,Long> {
     @Autowired
     private CollectInfoRepository collectInfoRepository;
     @Autowired

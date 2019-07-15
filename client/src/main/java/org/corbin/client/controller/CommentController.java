@@ -1,12 +1,12 @@
 package org.corbin.client.controller;
 
 import org.corbin.client.base.controller.BaseClientController;
-import org.corbin.client.service.CommentInfoService;
 import org.corbin.client.vo.comment.AddCommentVo;
 import org.corbin.client.vo.comment.GetCommentVo;
 import org.corbin.common.base.Response.ResponseCode;
 import org.corbin.common.base.Response.ResponseResult;
 import org.corbin.common.entity.CommentInfo;
+import org.corbin.common.service.CommentInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

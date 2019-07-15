@@ -1,14 +1,14 @@
-package org.corbin.client.service;
+package org.corbin.common.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.corbin.client.repository.CollectInfoRepository;
-import org.corbin.client.repository.SingerInfoRepository;
-import org.corbin.client.repository.SongInfoRepository;
-import org.corbin.client.repository.SongStatisticsDayLogRepository;
 import org.corbin.common.base.constant.EntityPreset;
 import org.corbin.common.base.service.BaseService;
 import org.corbin.common.entity.CollectInfo;
 import org.corbin.common.entity.SongInfo;
+import org.corbin.common.repository.CollectInfoRepository;
+import org.corbin.common.repository.SingerInfoRepository;
+import org.corbin.common.repository.SongInfoRepository;
+import org.corbin.common.repository.SongStatisticsDayLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class CollectInfoService extends BaseService {
+public class CollectInfoService extends BaseService<CollectInfo,Long> {
     @Autowired
     private CollectInfoRepository collectInfoRepository;
     @Autowired

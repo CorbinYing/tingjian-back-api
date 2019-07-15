@@ -1,10 +1,7 @@
-package org.corbin.client.service;
+package org.corbin.common.service;
 
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
-import org.corbin.client.repository.CollectInfoRepository;
-import org.corbin.client.repository.SongInfoRepository;
-import org.corbin.client.repository.SongStatisticsDayLogRepository;
 import org.corbin.common.base.Response.ResponseCode;
 import org.corbin.common.base.exception.ServiceException;
 import org.corbin.common.base.service.BaseService;
@@ -12,6 +9,9 @@ import org.corbin.common.entity.CollectInfo;
 import org.corbin.common.entity.SingerInfo;
 import org.corbin.common.entity.SongInfo;
 import org.corbin.common.entity.SongStatisticsDayLog;
+import org.corbin.common.repository.CollectInfoRepository;
+import org.corbin.common.repository.SongInfoRepository;
+import org.corbin.common.repository.SongStatisticsDayLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.lang.NonNull;
@@ -22,7 +22,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class SongInfoService extends BaseService {
+public class SongInfoService extends BaseService<SongInfo,Long> {
     @Autowired
     private SingerInfoService singerInfoService;
     @Autowired

@@ -1,13 +1,13 @@
 package org.corbin.client.controller.admin;
 
 import org.corbin.client.base.controller.BaseClientController;
-import org.corbin.client.service.SingerInfoService;
-import org.corbin.client.service.SongInfoService;
 import org.corbin.common.base.Response.ResponseCode;
 import org.corbin.common.base.Response.ResponseResult;
 import org.corbin.common.base.vo.BaseVo;
 import org.corbin.common.entity.SingerInfo;
 import org.corbin.common.entity.SongInfo;
+import org.corbin.common.service.SingerInfoService;
+import org.corbin.common.service.SongInfoService;
 import org.corbin.common.util.IdHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
