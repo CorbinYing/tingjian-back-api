@@ -11,4 +11,5 @@ public interface UserActiveInfoRepository extends BaseRepository<UserActiveInfo,
 
     @Transactional
     void deleteByUserId(Long userId);
+
 }

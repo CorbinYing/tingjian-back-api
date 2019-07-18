@@ -243,4 +243,15 @@ public class SongInfoService extends BaseService<SongInfo,Long> {
     public SongInfo searchSongBySongId(@NonNull Long songId){
        return songInfoRepository.findBySongId(songId);
     }
+
+
+
+    /**
+     * 获取最新30天歌曲信息
+     * @return
+     */
+    public List<SongInfo> getLast30DaysSongList() {
+        Date date = new Date(System.currentTimeMillis() - 30 * 24 * 60 * 60 * 1000);
+        return songInfoRepository.findAllBySongShelfTimeAfterOrderByCreateTime(date);
+    }
 }

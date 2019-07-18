@@ -1,4 +1,4 @@
-package org.corbin.server.config;
+package org.corbin.common.base.config;
 
 import lombok.Getter;
 import lombok.Setter;

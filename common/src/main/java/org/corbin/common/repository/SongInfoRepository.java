@@ -4,6 +4,7 @@ import org.corbin.common.base.dao.BaseRepository;
 import org.corbin.common.entity.SongInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -41,4 +42,8 @@ public interface SongInfoRepository extends BaseRepository<SongInfo, Long>{
     Page<SongInfo>findAllBySingerIdIn(List<Long> singerIdList, Pageable pageable);
 
 
+    List<SongInfo> findAllBySongShelfTimeAfterOrderByCreateTime(Date date);
+
+    @Query("SELECT a FROM SongInfo a WHERE  a.songId not in (SELECT b.songId FROM SongStatisticsDayLog b ) ")
+    List<SongInfo> findAllNeedAddIntoLog();
 }

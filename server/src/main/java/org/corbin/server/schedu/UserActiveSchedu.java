@@ -2,7 +2,7 @@ package org.corbin.server.schedu;
 
 import lombok.extern.slf4j.Slf4j;
 import org.corbin.common.entity.UserActiveInfo;
-import org.corbin.server.service.UserActiveInfoService;
+import org.corbin.common.service.UserActiveInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;

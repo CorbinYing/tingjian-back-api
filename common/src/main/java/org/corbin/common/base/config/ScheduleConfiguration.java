@@ -1,4 +1,4 @@
-//package org.corbin.server.config;
+package org.corbin.common.base.config;//package org.corbin.server.config;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Qualifier;
