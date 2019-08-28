@@ -3,6 +3,7 @@ package org.corbin.client.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.corbin.client.base.controller.BaseClientController;
 import org.corbin.client.vo.music.SongInfoVo;
+import org.corbin.client.vo.search.SearchSongVo;
 import org.corbin.common.base.Response.ResponseCode;
 import org.corbin.common.base.Response.ResponseResult;
 import org.corbin.common.base.vo.BaseVo;
@@ -80,21 +81,20 @@ public class MusicController extends BaseClientController {
 
     }
 
-//vo 类丢失，暂时注释
 
-//    /**
-//     * 查找歌曲
-//     *
-//     * @return
-//     */
-//    @PostMapping("/search")
-//    public ResponseResult searchSongs(@RequestBody SearchSongVo vo) {
-//        recordLoginActiveUpdate(vo);
-//
-//        Page<SongInfo> page = songInfoService.searchSongPage(vo.getSearchValue(), vo.of());
-//        Page<SongInfoVo> pageVo = convertWithCollectStatus(vo.getUserId(), page);
-//        return ResponseResult.newInstance(ResponseCode.SUCC_0, pageVo);
-//    }
+    /**
+     * 查找歌曲
+     *
+     * @return
+     */
+    @PostMapping("/search")
+    public ResponseResult searchSongs(@RequestBody SearchSongVo vo) {
+        recordLoginActiveUpdate(vo);
+
+        Page<SongInfo> page = songInfoService.searchSongPage(vo.getSearchValue(), vo.of());
+        Page<SongInfoVo> pageVo = convertWithCollectStatus(vo.getUserId(), page);
+        return ResponseResult.newInstance(ResponseCode.SUCC_0, pageVo);
+    }
 
 
     /**
